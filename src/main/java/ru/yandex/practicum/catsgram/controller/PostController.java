@@ -16,8 +16,8 @@ public class PostController {
     }
 
     @GetMapping
-    public Collection<Post> findAll() {
-        return postService.findAll();
+    public Collection<Post> findAll(@RequestParam(defaultValue = "-1") long page, @RequestParam(defaultValue = "10") long size, @RequestParam(defaultValue = "asc") String sort) {
+        return postService.findAll(page, size, sort);
     }
 
     @GetMapping("/{id}")
