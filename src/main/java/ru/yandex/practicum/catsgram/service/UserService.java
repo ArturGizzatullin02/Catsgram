@@ -13,6 +13,7 @@ import java.util.Map;
 @Service
 public class UserService {
     Map<Long, User> users = new HashMap<>();
+    long maxId = 0;
 
     public Collection<User> getUsers() {
         return users.values();
@@ -66,10 +67,6 @@ public class UserService {
     }
 
     private long getNextId() {
-        long currentMaxId = users.keySet().stream()
-                .mapToLong(id -> id)
-                .max()
-                .orElse(0);
-        return ++currentMaxId;
+        return ++maxId;
     }
 }

@@ -1,15 +1,11 @@
 package ru.yandex.practicum.catsgram.model;
 
-import lombok.*;
+import lombok.Data;
 
-@Getter
-@Setter
-@EqualsAndHashCode(of = "id")
-@ToString
 @Data
 public class Image {
-    Long id;
-    long postId;
-    String originalFileName;
-    String filePath;
+    private Long id;
+    private long postId;
+    private String originalFileName;
+    private String filePath;
 }

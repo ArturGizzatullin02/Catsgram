@@ -11,6 +11,7 @@ import java.util.*;
 @Service
 public class PostService {
     private final Map<Long, Post> posts = new HashMap<>();
+    long maxId = 0;
 
     public Collection<Post> findAll(long from, long size, String sort) {
         List<Post> filteredPosts = new ArrayList<>();
@@ -47,11 +48,11 @@ public class PostService {
         return filteredPosts;
     }
 
-    public Post findById(Long id)  {
+    public Optional<Post> findById(Long id)  {
         if (!posts.containsKey(id)) {
             throw new NotFoundException("Пост с id " + id + " не найден");
         }
-        return posts.get(id);
+        return Optional.of(posts.get(id));
     }
 
     public Post create(Post post) {
@@ -65,12 +66,7 @@ public class PostService {
     }
 
     private long getNextId() {
-        long currentMaxId = posts.keySet()
-                .stream()
-                .mapToLong(id -> id)
-                .max()
-                .orElse(0);
-        return ++currentMaxId;
+        return ++maxId;
     }
 
     public Post update(Post newPost) {
