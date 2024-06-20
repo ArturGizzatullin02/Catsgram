@@ -1,11 +1,14 @@
 package ru.yandex.practicum.catsgram.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import ru.yandex.practicum.catsgram.model.Post;
 import ru.yandex.practicum.catsgram.service.PostService;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/posts")
@@ -26,8 +29,10 @@ public class PostController {
     }
 
     @PostMapping
-    public Post create(@RequestBody Post post) {
-        return postService.create(post);
+    public ResponseEntity<Optional<Post>> create(@RequestBody Post post) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(Optional.of(postService.create(post)));
     }
 
     @PutMapping
