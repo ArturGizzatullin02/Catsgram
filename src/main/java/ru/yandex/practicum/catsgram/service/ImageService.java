@@ -27,8 +27,7 @@ public class ImageService {
     private final Map<Long, Image> images = new HashMap<>();
     long maxId = 0;
 
-    @Value("${catsgram.image-directory}")
-    private final String imageDirectory;
+    private final String imageDirectory = "/Users/artur/IdeaProjects/catsgram/Catsgram/src/main/resources/images";
 
     public List<Image> getPostImages(long postId) {
         return images.values()

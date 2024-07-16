@@ -13,7 +13,7 @@ public class PostService {
     private final Map<Long, Post> posts = new HashMap<>();
     long maxId = 0;
 
-    public Collection<Post> findAll(long from, long size, String sort) {
+    public Collection<Post> findAll(Long from, Long size, String sort) {
         List<Post> filteredPosts = new ArrayList<>();
         if (from == -1) {
             if (size > posts.size()) {
